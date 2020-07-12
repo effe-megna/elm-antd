@@ -34,6 +34,7 @@ import Html.Styled as Styled exposing (fromUnstyled, toUnstyled)
 import Html.Styled.Attributes exposing (alt, css, href, src)
 import Routes.ButtonComponent as ButtonPage
 import Routes.Home exposing (homePage)
+import Routes.LayoutComponent as LayoutPage
 import Routes.NotFound exposing (notFound)
 import Routes.NotImplemented exposing (notImplemented)
 import Routes.TooltipComponent as TooltipPage
@@ -55,6 +56,7 @@ type alias Model =
     , buttonPageModel : ButtonPage.Model
     , typographyPageModel : TypographyPage.Model
     , tooltipPageModel : TooltipPage.Model
+    , layoutPageModel : LayoutPage.Model
     }
 
 
@@ -68,6 +70,7 @@ type Msg
     | ButtonPageMessage ButtonPage.Msg
     | TooltipPageMessage TooltipPage.Msg
     | TypographyPageMessage TypographyPage.Msg
+    | LayoutPageMessage LayoutPage.Msg
 
 
 unimplementedComponents : List ( Route, ComponentCategory, Model -> Styled.Html Msg )
@@ -142,6 +145,10 @@ componentList =
             ButtonPage.route.view model.buttonPageModel
                 |> Styled.map ButtonPageMessage
 
+        layoutPageView model =
+            LayoutPage.route.view model.layoutPageModel
+                |> Styled.map LayoutPageMessage
+
         typographyPageView model =
             TypographyPage.route.view model.typographyPageModel
                 |> Styled.map TypographyPageMessage
@@ -152,6 +159,7 @@ componentList =
     in
     [ ( ButtonPage.route.title, ButtonPage.route.category, buttonPageView )
     , ( TypographyPage.route.title, TypographyPage.route.category, typographyPageView )
+    , ( LayoutPage.route.title, LayoutPage.route.category, layoutPageView )
     , ( TooltipPage.route.title, TooltipPage.route.category, tooltipPageView )
     ]
         ++ unimplementedComponents
@@ -211,6 +219,7 @@ init url =
       , buttonPageModel = ButtonPage.route.initialModel
       , typographyPageModel = TypographyPage.route.initialModel
       , tooltipPageModel = TooltipPage.route.initialModel
+      , layoutPageModel = LayoutPage.route.initialModel
       }
     , Cmd.none
     )
@@ -238,6 +247,17 @@ update navKey msg model =
                 | buttonPageModel = buttonPageModel
               }
             , Cmd.map ButtonPageMessage buttonPageCmd
+            )
+
+        LayoutPageMessage layoutPageMsg ->
+            let
+                ( layoutPageModel, layoutPageCmd ) =
+                    LayoutPage.route.update layoutPageMsg model.layoutPageModel
+            in
+            ( { model
+                | layoutPageModel = layoutPageModel
+              }
+            , Cmd.map LayoutPageMessage layoutPageCmd
             )
 
         TooltipPageMessage tooltipPageMessage ->

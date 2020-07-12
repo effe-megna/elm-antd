@@ -1,5 +1,6 @@
 module UI.Container exposing
-    ( Model
+    ( ContainerMetaSection
+    , Model
     , Msg(..)
     , demoBox
     , paddingBottom
