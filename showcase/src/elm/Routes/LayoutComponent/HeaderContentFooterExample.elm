@@ -9,21 +9,20 @@ import Html.Styled as Styled exposing (div, fromUnstyled, toUnstyled)
 import Html.Styled.Attributes exposing (css)
 
 
-headerComponent =
-    div
-        [ css
-            [ backgroundColor (hex "#001529")
-            , color (hex "#fff")
-            , padding2 (px 4) (px 4)
-            , height (px 50)
-            ]
-        ]
-        []
-
-
 headerContentFooterExample : Layout.LayoutTree msg
 headerContentFooterExample =
     let
+        headerContent =
+            div
+                [ css
+                    [ backgroundColor (hex "#001529")
+                    , color (hex "#fff")
+                    , padding2 (px 4) (px 4)
+                    , height (px 50)
+                    ]
+                ]
+                []
+
         mainContent =
             div
                 [ css
@@ -41,105 +40,95 @@ headerContentFooterExample =
             div [ css [ backgroundColor (hex "#f0f2f5"), padding2 (px 16) (px 24), textAlign center ] ]
                 [ fromUnstyled (Text.text "Make software great again by Elm" |> Text.toHtml) ]
     in
-    Layout.layout2
-        (Layout.header <| toUnstyled headerComponent)
-        (Layout.layout2
-            (Layout.content <| toUnstyled mainContent)
-            (Layout.footer <| toUnstyled footerContent)
-        )
-
-
-headerSider : Layout.LayoutTree msg
-headerSider =
-    let
-        sidebarContent =
-            div
-                [ css
-                    [ backgroundColor (hex "#fff")
-                    , displayFlex
-                    , flexDirection column
-                    , height (pct 100)
-                    , padding2 (px 16) (px 12)
-                    ]
-                ]
-                [ fromUnstyled (Text.text "Sidebar" |> Text.toHtml)
-                ]
-
-        mainContent =
-            div
-                [ css
-                    [ backgroundColor (hex "#f0f2f5")
-                    , displayFlex
-                    , flexDirection column
-                    , padding (px 24)
-                    , height (px 400)
-                    , width (pct 100)
-                    ]
-                ]
-                [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] [ fromUnstyled (Text.text "Content" |> Text.toHtml) ]
-                ]
-
-        footerContent =
-            div [ css [ backgroundColor (hex "#f0f2f5"), padding2 (px 16) (px 24), textAlign center ] ]
-                [ fromUnstyled (Text.text "Make software great again by Elm" |> Text.toHtml) ]
-    in
-    Layout.layout2
-        (Layout.header <| toUnstyled headerComponent)
-        (Layout.layout2
-            (Layout.sidebar (toUnstyled sidebarContent)
-                |> Layout.sidebarWidth 246
-                |> Layout.sidebarToTree
-            )
-            (Layout.content <| toUnstyled mainContent)
-        )
-
-
-headerSider2 : Layout.LayoutTree msg
-headerSider2 =
-    let
-        sidebarContent =
-            div
-                [ css
-                    [ backgroundColor (hex "#fff")
-                    , displayFlex
-                    , flexDirection column
-                    , height (pct 100)
-                    , padding2 (px 16) (px 12)
-                    ]
-                ]
-                [ fromUnstyled (Text.text "Sidebar" |> Text.toHtml)
-                ]
-
-        mainContent =
-            div
-                [ css
-                    [ backgroundColor (hex "#f0f2f5")
-                    , displayFlex
-                    , flexDirection column
-                    , padding (px 24)
-                    , height (px 400)
-                    , width (pct 100)
-                    ]
-                ]
-                [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] [ fromUnstyled (Text.text "Content" |> Text.toHtml) ]
-                ]
-
-        footerContent =
-            div [ css [ backgroundColor (hex "#f0f2f5"), padding2 (px 16) (px 24), textAlign center ] ]
-                [ fromUnstyled (Text.text "Make software great again by Elm" |> Text.toHtml) ]
-    in
-    Layout.layout2
-        (Layout.header <| toUnstyled headerComponent)
-        (Layout.layout2
-            (Layout.sidebar (toUnstyled sidebarContent)
-                |> Layout.sidebarWidth 246
-                |> Layout.sidebarToTree
-            )
-            (Layout.content <| toUnstyled mainContent)
-        )
+    Layout.layout
+        (Layout.header <| toUnstyled headerContent)
+        (Layout.content <| toUnstyled mainContent)
+        (Layout.footer <| toUnstyled footerContent)
 
 
 
+-- headerSider : Layout.LayoutTree msg
+-- headerSider =
+--     let
+--         sidebarContent =
+--             div
+--                 [ css
+--                     [ backgroundColor (hex "#fff")
+--                     , displayFlex
+--                     , flexDirection column
+--                     , height (pct 100)
+--                     , padding2 (px 16) (px 12)
+--                     ]
+--                 ]
+--                 [ fromUnstyled (Text.text "Sidebar" |> Text.toHtml)
+--                 ]
+--         mainContent =
+--             div
+--                 [ css
+--                     [ backgroundColor (hex "#f0f2f5")
+--                     , displayFlex
+--                     , flexDirection column
+--                     , padding (px 24)
+--                     , height (px 400)
+--                     , width (pct 100)
+--                     ]
+--                 ]
+--                 [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] [ fromUnstyled (Text.text "Content" |> Text.toHtml) ]
+--                 ]
+--         footerContent =
+--             div [ css [ backgroundColor (hex "#f0f2f5"), padding2 (px 16) (px 24), textAlign center ] ]
+--                 [ fromUnstyled (Text.text "Make software great again by Elm" |> Text.toHtml) ]
+--     in
+--     Layout.layout2
+--         (Layout.header <| toUnstyled headerComponent)
+--         (Layout.layout2
+--             (Layout.sidebar (toUnstyled sidebarContent)
+--                 |> Layout.sidebarWidth 246
+--                 |> Layout.sidebarToTree
+--             )
+--             (Layout.content <| toUnstyled mainContent)
+--         )
+-- headerSider2 : Layout.LayoutTree msg
+-- headerSider2 =
+--     let
+--         sidebarContent =
+--             div
+--                 [ css
+--                     [ backgroundColor (hex "#fff")
+--                     , displayFlex
+--                     , flexDirection column
+--                     , height (pct 100)
+--                     , padding2 (px 16) (px 12)
+--                     ]
+--                 ]
+--                 [ fromUnstyled (Text.text "Sidebar" |> Text.toHtml)
+--                 ]
+--         mainContent =
+--             div
+--                 [ css
+--                     [ backgroundColor (hex "#f0f2f5")
+--                     , displayFlex
+--                     , flexDirection column
+--                     , padding (px 24)
+--                     , height (px 400)
+--                     , width (pct 100)
+--                     ]
+--                 ]
+--                 [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] [ fromUnstyled (Text.text "Content" |> Text.toHtml) ]
+--                 ]
+--         footerContent =
+--             div [ css [ backgroundColor (hex "#f0f2f5"), padding2 (px 16) (px 24), textAlign center ] ]
+--                 [ fromUnstyled (Text.text "Make software great again by Elm" |> Text.toHtml) ]
+--     in
+--     Layout.layout2
+--         (Layout.header <| toUnstyled headerComponent)
+--         (Layout.layout2
+--             (Layout.sidebar (toUnstyled sidebarContent)
+--                 |> Layout.sidebarWidth 246
+--                 |> Layout.sidebarToTree
+--             )
+--             (Layout.content <| toUnstyled mainContent)
+--         )
 -- sidebar : Layout.LayoutTree msg
 -- sidebar =
 --     let
@@ -194,5 +183,5 @@ headerSider2 =
 
 example : Html msg
 example =
-    headerSider
+    headerContentFooterExample
         |> Layout.toHtml
