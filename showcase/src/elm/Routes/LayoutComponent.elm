@@ -7,6 +7,7 @@ import Html.Styled.Attributes exposing (css)
 import Routes.LayoutComponent.HeaderContentFooterExample as HeaderContentFooterExample
 import Routes.LayoutComponent.HeaderSider2Example as HeaderSider2Example
 import Routes.LayoutComponent.HeaderSiderExample as HeaderSiderExample
+import Routes.LayoutComponent.HeaderFixedExample as HeaderFixedExample
 import UI.Container as Container
 import UI.Typography as Typography
     exposing
@@ -23,6 +24,7 @@ type alias Model =
     { headerContentFooterExample : Container.Model
     , headerSiderExample : Container.Model
     , headerSider2Example : Container.Model
+    , headerFixedExample : Container.Model
     }
 
 
@@ -30,6 +32,7 @@ type DemoBox
     = HeaderContentFooterExample
     | HeaderSiderExample
     | HeaderSider2Example
+    | HeaderFixedExample
 
 
 type Msg
@@ -51,6 +54,7 @@ route =
         { headerContentFooterExample = { sourceCodeVisible = False, sourceCode = "" }
         , headerSiderExample = { sourceCodeVisible = False, sourceCode = "" }
         , headerSider2Example = { sourceCodeVisible = False, sourceCode = "" }
+        , headerFixedExample = { sourceCodeVisible = False, sourceCode = "" }
         }
     }
 
@@ -99,6 +103,19 @@ headerSider2Example model =
             }
         }
 
+headerFixedExample : Model -> Styled.Html Msg
+headerFixedExample model =
+    constructExample
+        { model = model.headerFixedExample
+        , lift = HeaderFixedExample
+        , view = HeaderFixedExample.example
+        , metaInfo =
+            { title = "Header Fixed"
+            , content = "Basic Example"
+            , ellieDemo = ""
+            , sourceCode = ""
+            }
+        }
 
 view : Model -> Styled.Html Msg
 view model =
@@ -109,6 +126,7 @@ view model =
             [ div [ css [ width (pct 100), height (pct 100) ] ] [ headerContentFooterExample model ]
             , div [ css [ width (pct 100), height (pct 100) ] ] [ headerSiderExample model ]
             , div [ css [ width (pct 100), height (pct 100) ] ] [ headerSider2Example model ]
+            , div [ css [ width (pct 100), height (pct 100) ] ] [ headerFixedExample model ]
             ]
         ]
 
