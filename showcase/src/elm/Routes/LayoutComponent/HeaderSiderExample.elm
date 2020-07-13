@@ -27,37 +27,37 @@ mainContentView =
                 ]
 
         mainContent =
-          div
-            [ css
-                [ backgroundColor (hex "#f0f2f5")
-                , displayFlex
-                , flexDirection column
-                , width (pct 100)
+            div
+                [ css
+                    [ backgroundColor (hex "#f0f2f5")
+                    , displayFlex
+                    , flexDirection column
+                    , width (pct 100)
+                    ]
                 ]
-            ]
-            [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] [ fromUnstyled (Text.text "Content" |> Text.toHtml) ]
-            ]
+                [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] [ fromUnstyled (Text.text "Content" |> Text.toHtml) ]
+                ]
     in
     div
-      [ css
-          [ backgroundColor (hex "#f0f2f5")
-          , displayFlex
-          , flexDirection column
-          , height (px 400)
-          , width (pct 100)
-          , padding4 (px 50) (px 50) (px 14) (px 50)
-          ]
-      ]
-      [ fromUnstyled
-          (Layout.layout2
-              (Layout.sidebar (toUnstyled sidebarContent)
-                  |> Layout.sidebarWidth 246
-                  |> Layout.sidebarToTree
-              )
-              (Layout.content <| toUnstyled (mainContent))
-              |> Layout.toHtml
-          )
-      ]
+        [ css
+            [ backgroundColor (hex "#f0f2f5")
+            , displayFlex
+            , flexDirection column
+            , height (px 400)
+            , width (pct 100)
+            , padding4 (px 50) (px 50) (px 14) (px 50)
+            ]
+        ]
+        [ fromUnstyled
+            (Layout.layout2
+                (Layout.sidebar (toUnstyled sidebarContent)
+                    |> Layout.sidebarWidth 246
+                    |> Layout.sidebarToTree
+                )
+                (Layout.content <| toUnstyled mainContent)
+                |> Layout.toHtml
+            )
+        ]
 
 
 example : Html msg

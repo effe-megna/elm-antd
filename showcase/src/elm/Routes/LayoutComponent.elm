@@ -5,9 +5,9 @@ import Html exposing (Html)
 import Html.Styled as Styled exposing (div, fromUnstyled, span, text)
 import Html.Styled.Attributes exposing (css)
 import Routes.LayoutComponent.HeaderContentFooterExample as HeaderContentFooterExample
+import Routes.LayoutComponent.HeaderFixedExample as HeaderFixedExample
 import Routes.LayoutComponent.HeaderSider2Example as HeaderSider2Example
 import Routes.LayoutComponent.HeaderSiderExample as HeaderSiderExample
-import Routes.LayoutComponent.HeaderFixedExample as HeaderFixedExample
 import UI.Container as Container
 import UI.Typography as Typography
     exposing
@@ -103,6 +103,7 @@ headerSider2Example model =
             }
         }
 
+
 headerFixedExample : Model -> Styled.Html Msg
 headerFixedExample model =
     constructExample
@@ -116,6 +117,7 @@ headerFixedExample model =
             , sourceCode = ""
             }
         }
+
 
 view : Model -> Styled.Html Msg
 view model =

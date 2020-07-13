@@ -5,7 +5,7 @@ import Ant.Tooltip as Tooltip exposing (tooltip)
 import Ant.Typography.Text as Text
 import Css exposing (..)
 import Html exposing (Html)
-import Html.Styled as Styled exposing (div, text, fromUnstyled, toUnstyled)
+import Html.Styled as Styled exposing (div, fromUnstyled, text, toUnstyled)
 import Html.Styled.Attributes exposing (css)
 
 
@@ -22,11 +22,11 @@ example =
                     ]
                 ]
                 []
-        
+
         someContents =
-          div
-            [ css [ padding (px 40) ] ]
-            [ fromUnstyled (Text.text "Some contents..." |> Text.toHtml) ]
+            div
+                [ css [ padding (px 40) ] ]
+                [ fromUnstyled (Text.text "Some contents..." |> Text.toHtml) ]
 
         mainContent =
             div
@@ -39,15 +39,15 @@ example =
                     , overflow auto
                     ]
                 ]
-                [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ] 
-                  [ someContents
-                  , someContents
-                  , someContents
-                  , someContents
-                  , someContents
-                  , someContents
-                  , someContents
-                   ]
+                [ div [ css [ backgroundColor (hex "#fff"), height (pct 100), padding (px 16) ] ]
+                    [ someContents
+                    , someContents
+                    , someContents
+                    , someContents
+                    , someContents
+                    , someContents
+                    , someContents
+                    ]
                 ]
 
         footerContent =
